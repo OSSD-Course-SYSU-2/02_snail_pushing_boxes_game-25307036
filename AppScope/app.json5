@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.min3dmapdemo",
+    "bundleName": "com.example.snail_pushing_boxes_game",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

@@ -1,0 +1,21 @@
+{
+  "style_name": "森林童话休闲解谜",
+  "palette": {
+    "deep_forest": "#10261C",
+    "moss_green": "#2D6547",
+    "leaf_green": "#5EA268",
+    "warm_gold": "#F3C967",
+    "wood_brown": "#B97935",
+    "parchment": "#F0E1BE",
+    "cream_text": "#FFF6E6"
+  },
+  "usage": {
+    "棋盘角色": "snail_player.png",
+    "普通木箱": "wood_box.png",
+    "死角木箱": "wood_box_deadlock.png",
+    "目标点": "lily_goal.png",
+    "墙体": "moss_wall_tile.png",
+    "地面": "forest_floor_tile.png",
+    "通关星星": "gold_star.png"
+  }
+}
