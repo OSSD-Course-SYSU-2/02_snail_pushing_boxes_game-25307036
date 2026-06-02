@@ -3,6 +3,14 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { media } from '@kit.MediaKit';
 import { SNAIL_LEVELS, SnailLevel } from '../data/SnailLevels';
 import { Colors, FontSize, Radius, Shadow, Spacing } from '../theme/VisualTheme';
+import {
+  CONTINUE_HISTORY_LIMIT,
+  CONTINUE_INCOMING_STATE_KEY,
+  CONTINUE_OUTBOUND_STATE_KEY,
+  CONTINUE_STATE_VERSION,
+  parseContinueState,
+  SnailContinueState
+} from '../utils/ContinuationState';
 import { keyboardMoveFromKey } from '../utils/KeyboardMapping';
 import {
   countGoalsCovered,
@@ -29,6 +37,8 @@ const RATING_STAR_LIT_COLOR: string = '#FFD700';
 const RATING_STAR_LIT_SHADOW_COLOR: string = '#FFD700AA';
 
 PersistentStorage.persistProp(SAVE_KEY, DEFAULT_SAVE_DATA_TEXT);
+AppStorage.setOrCreate(CONTINUE_OUTBOUND_STATE_KEY, '');
+AppStorage.setOrCreate(CONTINUE_INCOMING_STATE_KEY, '');
 
 interface LevelRecord {
   levelId: number;
@@ -47,6 +57,9 @@ interface SaveData {
 @Component
 struct Index {
   @StorageLink(SAVE_KEY) saveDataText: string = DEFAULT_SAVE_DATA_TEXT;
+  @StorageLink(CONTINUE_INCOMING_STATE_KEY)
+  @Watch('restoreContinuedGame')
+  incomingContinueStateText: string = '';
   @State currentView: number = VIEW_START;
   @State layoutWidth: number = 0;
   @State levelIndex: number = 0;
@@ -81,7 +94,8 @@ struct Index {
     this.loadLevel(this.readSaveData().lastPlayedLevelIndex);
     this.currentView = VIEW_START;
     this.setStatus('选择任意关卡，帮蜗牛把补给箱慢慢送回荷叶码头。', 0);
-    this.startBackgroundMusic(START_PAGE_BGM_RAW_FILE);
+    this.restoreContinuedGame();
+    this.startBackgroundMusic(this.currentView === VIEW_START ? START_PAGE_BGM_RAW_FILE : GAME_BGM_RAW_FILE);
   }
 
   aboutToDisappear(): void {
@@ -180,6 +194,7 @@ struct Index {
     this.persistChallengeRecord(targetLevelIndex);
     this.loadLevel(targetLevelIndex);
     this.currentView = VIEW_PLAY;
+    this.syncContinueState();
     this.focusGameRoot();
   }
 
@@ -1966,6 +1981,67 @@ struct Index {
   private setStatus(text: string, tone: number): void {
     this.statusText = text;
     this.statusTone = tone;
+    this.syncContinueState();
+  }
+
+  private restoreContinuedGame(): void {
+    const state = parseContinueState(this.incomingContinueStateText);
+    if (state === undefined) {
+      return;
+    }
+
+    this.incomingContinueStateText = '';
+    if (state.saveDataText.length > 0) {
+      this.saveDataText = state.saveDataText;
+      this.ensureSaveData();
+    }
+
+    this.loadLevel(state.levelIndex);
+    this.currentView = this.safeContinueView(state.currentView);
+
+    const restoredBoxKeys = this.validBoardKeys(state.boxKeys);
+    if (restoredBoxKeys.length === this.boxKeys.length) {
+      this.boxKeys = restoredBoxKeys;
+    }
+
+    if (hasKey(this.floorKeys, state.playerKey) && !hasKey(this.boxKeys, state.playerKey)) {
+      this.playerKey = state.playerKey;
+    }
+
+    this.moveCount = state.moveCount;
+    this.pushCount = state.pushCount;
+    this.history = state.history.slice(Math.max(0, state.history.length - CONTINUE_HISTORY_LIMIT));
+    this.lastClearStars = state.lastClearStars;
+    this.isCleared = state.isCleared || isLevelSolved(this.boxKeys, this.goalKeys);
+    this.clearOverlayProgress = this.isCleared ? Math.max(1, state.clearOverlayProgress) : 0;
+    this.deadlockedBoxKeys = this.isCleared ? [] : getDeadlockedBoxKeys(this.boxKeys, this.wallKeys, this.goalKeys, this.floorKeys);
+    this.setStatus('已从其他设备接续当前进度。', 1);
+    this.switchBackgroundMusic(this.currentView === VIEW_START ? START_PAGE_BGM_RAW_FILE : GAME_BGM_RAW_FILE);
+    this.syncContinueState();
+  }
+
+  private syncContinueState(): void {
+    try {
+      const state: SnailContinueState = {
+        version: CONTINUE_STATE_VERSION,
+        currentView: this.currentView,
+        levelIndex: this.levelIndex,
+        playerKey: this.playerKey,
+        boxKeys: this.boxKeys,
+        deadlockedBoxKeys: this.deadlockedBoxKeys,
+        moveCount: this.moveCount,
+        pushCount: this.pushCount,
+        history: this.history.slice(Math.max(0, this.history.length - CONTINUE_HISTORY_LIMIT)),
+        isCleared: this.isCleared,
+        lastClearStars: this.lastClearStars,
+        clearOverlayProgress: this.clearOverlayProgress,
+        statusText: this.statusText,
+        statusTone: this.statusTone,
+        saveDataText: this.saveDataText
+      };
+      AppStorage.setOrCreate(CONTINUE_OUTBOUND_STATE_KEY, JSON.stringify(state));
+    } catch (error) {
+    }
   }
 
   private statusBackgroundColor(): string {
@@ -2092,6 +2168,25 @@ struct Index {
       return SNAIL_LEVELS.length - 1;
     }
     return index;
+  }
+
+  private safeContinueView(view: number): number {
+    if (view === VIEW_START || view === VIEW_HOME || view === VIEW_PLAY) {
+      return view;
+    }
+    return VIEW_HOME;
+  }
+
+  private validBoardKeys(keys: string[]): string[] {
+    const nextKeys: string[] = [];
+    for (let index = 0; index < keys.length; index++) {
+      const key = keys[index];
+      if (!hasKey(this.floorKeys, key) || hasKey(nextKeys, key)) {
+        continue;
+      }
+      nextKeys.push(key);
+    }
+    return nextKeys;
   }
 
   private updateLastPlayedLevel(levelIndex: number): void {
