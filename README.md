@@ -1,6 +1,6 @@
-\# 蜗牛推箱子
+# 蜗牛推箱子
 
-\## 作者：付喆
+## 作者：付喆
 
 蜗牛推箱子是一款基于 HarmonyOS / ArkTS 开发的关卡制 Sokoban 益智小游戏。玩家控制蜗牛在森林棋盘中移动，将所有木箱推到荷叶目标点，完成关卡挑战并获得星级评价。
 
@@ -10,141 +10,141 @@
 
 
 
-\## 游戏截图
+## 游戏截图
 
 
 
-\### 开始页面
+### 开始页面
 
 
 
-\####单屏大小开始页面
+#### 单屏大小开始页面
 
 
 
-!\[开始页面](doc/screenshots/单屏大小页面.png)
+![开始页面](doc/screenshots/单屏大小页面.png)
 
 
 
-\####双屏大小开始页面
+#### 双屏大小开始页面
 
 
 
-!\[开始页面](doc/screenshots/双屏大小页面.png)
+![开始页面](doc/screenshots/双屏大小页面.png)
 
 
 
-\####三屏大小开始页面
+#### 三屏大小开始页面
 
 
 
-!\[开始页面](doc/screenshots/三屏大小页面.png)
+![开始页面](doc/screenshots/三屏大小页面.png)
 
 
 
-\### 关卡总览
+### 关卡总览
 
 
 
-!\[关卡总览](doc/screenshots/02-home-overview.png)
+![关卡总览](doc/screenshots/02-home-overview.png)
 
 
 
-\### 棋盘与局内控制
+### 棋盘与局内控制
 
 
 
-!\[棋盘与局内控制](doc/screenshots/03-play-board-controls.png)
+![棋盘与局内控制](doc/screenshots/03-play-board-controls.png)
 
 
 
-\### 路线总览
+### 路线总览
 
 
 
-!\[路线总览](doc/screenshots/04-route-overview.png)
+![路线总览](doc/screenshots/04-route-overview.png)
 
 
 
-\### 通关反馈
+### 通关反馈
 
 
 
-!\[通关反馈](doc/screenshots/05-clear-overlay.png)
+![通关反馈](doc/screenshots/05-clear-overlay.png)
 
 
 
-\### 游戏内的自适应布局
+### 游戏内的自适应布局
 
 
 
-\#### 三屏-关卡总览
+#### 三屏-关卡总览
 
 
 
-!\[三屏关卡总览](doc/screenshots/三屏大小.1.png)
+![三屏关卡总览](doc/screenshots/三屏大小.1.png)
 
 
 
-\#### 三屏-棋盘与局内控制
+#### 三屏-棋盘与局内控制
 
 
 
-!\[三屏棋盘与局内控制](doc/screenshots/三屏大小.2.png)
+![三屏棋盘与局内控制](doc/screenshots/三屏大小.2.png)
 
 
 
-\#### 双屏-关卡总览
+#### 双屏-关卡总览
 
 
 
-!\[双屏关卡总览](doc/screenshots/双屏大小.1.png)
+![双屏关卡总览](doc/screenshots/双屏大小.1.png)
 
 
 
-\#### 双屏-棋盘与局内控制
+#### 双屏-棋盘与局内控制
 
 
 
-!\[双屏棋盘与局内控制](doc/screenshots/双屏大小.2.png)
+![双屏棋盘与局内控制](doc/screenshots/双屏大小.2.png)
 
 
 
-!\[双屏棋盘与局内控制](doc/screenshots/双屏大小.3.png)
+![双屏棋盘与局内控制](doc/screenshots/双屏大小.3.png)
 
 
 
-\## 核心功能
+## 核心功能
 
 
 
-\- 自适应布局，元素可以适应手机、平板、三折叠等屏幕变化
+- 自适应布局，元素可以适应手机、平板、三折叠等屏幕变化
 
-\- 支持一次开发多端部署，`entry` 模块已声明 `phone`、`tablet`、`2in1` 设备类型。
+- 支持一次开发多端部署，`entry` 模块已声明 `phone`、`tablet`、`2in1` 设备类型。
 
-\- 支持自由流转，跨设备接续时会恢复当前页面、关卡、步数、推箱次数和棋盘状态。
+- 支持自由流转，跨设备接续时会恢复当前页面、关卡、步数、推箱次数和棋盘状态。
 
-\- 11 个关卡，难度从入门到挑战逐步提升。
+- 11 个关卡，难度从入门到挑战逐步提升。
 
-\- 所有关卡初始可直接选择，无需解锁。
+- 所有关卡初始可直接选择，无需解锁。
 
-\- 支持屏幕方向键、键盘方向键和 `W`、`A`、`S`、`D` 操作。
+- 支持屏幕方向键、键盘方向键和 `W`、`A`、`S`、`D` 操作。
 
-\- 支持撤销、重开、上一关、下一关和返回总览。
+- 支持撤销、重开、上一关、下一关和返回总览。
 
-\- 游戏缓存会自动保存最近游玩关卡、挑战次数、最佳步数、最佳推箱次数和最高星级。
+- 游戏缓存会自动保存最近游玩关卡、挑战次数、最佳步数、最佳推箱次数和最高星级。
 
-\- 通关后展示完成面板、星级评价和下一关入口。
+- 通关后展示完成面板、星级评价和下一关入口。
 
-\- 播放通关音效时暂停背景音乐，音效结束后恢复背景音乐。
+- 播放通关音效时暂停背景音乐，音效结束后恢复背景音乐。
 
-\- 长地图支持竖版关卡布局，避免棋盘超出可视范围。
+- 长地图支持竖版关卡布局，避免棋盘超出可视范围。
 
-\- 棋盘元素使用蜗牛、木箱、荷叶、森林地面和苔藓墙体素材渲染。
+- 棋盘元素使用蜗牛、木箱、荷叶、森林地面和苔藓墙体素材渲染。
 
 
 
-\## 玩法规则
+## 玩法规则
 
 
 
@@ -156,7 +156,7 @@
 
 
 
-\## 操作方式
+## 操作方式
 
 
 
@@ -180,7 +180,7 @@
 
 
 
-\## 关卡列表
+## 关卡列表
 
 
 
@@ -212,11 +212,11 @@
 
 
 
-\## 技术实现
+## 技术实现
 
 
 
-\### 页面与流程
+### 页面与流程
 
 
 
@@ -224,7 +224,7 @@
 
 
 
-\### 自适应布局
+### 自适应布局
 
 
 
@@ -236,11 +236,11 @@
 
 
 
-\### 游戏缓存
+### 游戏缓存
 
 
 
-游戏缓存基于 `PersistentStorage.persistProp()` 和 `@StorageLink` 实现。`SAVE\_KEY` 对应的字符串状态 `saveDataText` 会持久化保存 `lastPlayedLevelIndex` 和 `records`，其中 `records` 记录每个关卡的挑战次数、最佳步数、最佳推箱次数和最高星级。
+游戏缓存基于 `PersistentStorage.persistProp()` 和 `@StorageLink` 实现。`SAVE_KEY` 对应的字符串状态 `saveDataText` 会持久化保存 `lastPlayedLevelIndex` 和 `records`，其中 `records` 记录每个关卡的挑战次数、最佳步数、最佳推箱次数和最高星级。
 
 
 
@@ -248,7 +248,7 @@
 
 
 
-\### 自由流转与多端部署
+### 自由流转与多端部署
 
 
 
@@ -260,17 +260,17 @@
 
 
 
-\- 当前页面：开始页、关卡总览页或游戏页。
+- 当前页面：开始页、关卡总览页或游戏页。
 
-\- 当前关卡、蜗牛位置、箱子位置和死角箱子提示状态。
+- 当前关卡、蜗牛位置、箱子位置和死角箱子提示状态。
 
-\- 当前步数、推箱次数、是否通关、通关星级和通关弹层状态。
+- 当前步数、推箱次数、是否通关、通关星级和通关弹层状态。
 
-\- 最近 80 步撤销历史，流转后仍可继续撤销。
+- 最近 80 步撤销历史，流转后仍可继续撤销。
 
-\- 本地存档文本，包括最近游玩关卡、挑战次数、最佳步数、最佳推箱次数和最高星级。
+- 本地存档文本，包括最近游玩关卡、挑战次数、最佳步数、最佳推箱次数和最高星级。
 
-\- 根据恢复后的页面重新选择开始页音乐或游戏背景音乐。
+- 根据恢复后的页面重新选择开始页音乐或游戏背景音乐。
 
 
 
@@ -278,7 +278,7 @@
 
 
 
-\### 关卡数据
+### 关卡数据
 
 
 
@@ -304,13 +304,13 @@
 
 | `@` | 蜗牛初始位置 |
 
-| `\*` | 位于目标点上的木箱 |
+| `*` | 位于目标点上的木箱 |
 
 | `+` | 位于目标点上的蜗牛 |
 
 
 
-\### 推箱逻辑
+### 推箱逻辑
 
 
 
@@ -318,7 +318,7 @@
 
 
 
-\### 键盘映射
+### 键盘映射
 
 
 
@@ -326,7 +326,7 @@
 
 
 
-\### 视觉主题
+### 视觉主题
 
 
 
@@ -334,7 +334,7 @@
 
 
 
-\### 音频资源
+### 音频资源
 
 
 
@@ -350,7 +350,7 @@
 
 
 
-\## 美术资源
+## 美术资源
 
 
 
@@ -358,23 +358,23 @@
 
 | --- | --- | --- |
 
-| 蜗牛角色 | <img src="entry/src/main/resources/base/media/snail\_player.png" width="72" /> | 玩家角色 |
+| 蜗牛角色 | <img src="entry/src/main/resources/base/media/snail_player.png" width="72" /> | 玩家角色 |
 
-| 普通木箱 | <img src="entry/src/main/resources/base/media/wood\_box.png" width="72" /> | 推箱目标 |
+| 普通木箱 | <img src="entry/src/main/resources/base/media/wood_box.png" width="72" /> | 推箱目标 |
 
-| 死角木箱 | <img src="entry/src/main/resources/base/media/wood\_box\_deadlock.png" width="72" /> | 死角预警 |
+| 死角木箱 | <img src="entry/src/main/resources/base/media/wood_box_deadlock.png" width="72" /> | 死角预警 |
 
-| 荷叶目标 | <img src="entry/src/main/resources/base/media/lily\_goal.png" width="72" /> | 箱子终点 |
+| 荷叶目标 | <img src="entry/src/main/resources/base/media/lily_goal.png" width="72" /> | 箱子终点 |
 
-| 金色星星 | <img src="entry/src/main/resources/base/media/gold\_star.png" width="72" /> | 通关评级 |
+| 金色星星 | <img src="entry/src/main/resources/base/media/gold_star.png" width="72" /> | 通关评级 |
 
-| 主按钮 | <img src="entry/src/main/resources/base/media/ui\_button\_primary.png" width="150" /> | 主要操作 |
+| 主按钮 | <img src="entry/src/main/resources/base/media/ui_button_primary.png" width="150" /> | 主要操作 |
 
-| 绿色按钮 | <img src="entry/src/main/resources/base/media/ui\_button\_green.png" width="150" /> | 次级操作和方向键 |
+| 绿色按钮 | <img src="entry/src/main/resources/base/media/ui_button_green.png" width="150" /> | 次级操作和方向键 |
 
 
 
-\## 项目结构
+## 项目结构
 
 
 
@@ -382,23 +382,23 @@
 
 entry/src/main/ets/
 
-&#x20; data/
+  data/
 
-&#x20;   SnailLevels.ets          关卡数据、难度、提示、标杆步数
+    SnailLevels.ets          关卡数据、难度、提示、标杆步数
 
-&#x20; pages/
+  pages/
 
-&#x20;   Index.ets                主页面、游戏流程、UI、音频和存档
+    Index.ets                主页面、游戏流程、UI、音频和存档
 
-&#x20; theme/
+  theme/
 
-&#x20;   VisualTheme.ets          视觉主题常量
+    VisualTheme.ets          视觉主题常量
 
-&#x20; utils/
+  utils/
 
-&#x20;   KeyboardMapping.ets      方向键和 WASD 映射
+    KeyboardMapping.ets      方向键和 WASD 映射
 
-&#x20;   SokobanLogic.ets         推箱规则、通关判定、死角检测
+    SokobanLogic.ets         推箱规则、通关判定、死角检测
 
 ```
 
@@ -408,63 +408,63 @@ entry/src/main/ets/
 
 entry/src/main/resources/
 
-&#x20; base/media/
+  base/media/
 
-&#x20;   start\_page.png
+    start_page.png
 
-&#x20;   snail\_player.png
+    snail_player.png
 
-&#x20;   wood\_box.png
+    wood_box.png
 
-&#x20;   wood\_box\_deadlock.png
+    wood_box_deadlock.png
 
-&#x20;   lily\_goal.png
+    lily_goal.png
 
-&#x20;   moss\_wall\_tile.png
+    moss_wall_tile.png
 
-&#x20;   forest\_floor\_tile.png
+    forest_floor_tile.png
 
-&#x20;   gold\_star.png
+    gold_star.png
 
-&#x20;   ui\_button\_primary.png
+    ui_button_primary.png
 
-&#x20;   ui\_button\_green.png
+    ui_button_green.png
 
-&#x20;   card\_panel\_parchment.png
+    card_panel_parchment.png
 
-&#x20;   start\_page\_decoration.png
+    start_page_decoration.png
 
-&#x20;   sparkles.png
+    sparkles.png
 
-&#x20; rawfile/
+  rawfile/
 
-&#x20;   开始页面音乐.mp3
+    开始页面音乐.mp3
 
-&#x20;   背景音乐.mp3
+    背景音乐.mp3
 
-&#x20;   通关音效.mp3
+    通关音效.mp3
 
 ```
 
 
 
-\## 运行方式
+## 运行方式
 
 
 
-1\. 使用 DevEco Studio 打开项目根目录。
+1. 使用 DevEco Studio 打开项目根目录。
 
-2\. 确认 HarmonyOS SDK 与工程依赖完整。
+2. 确认 HarmonyOS SDK 与工程依赖完整。
 
-3\. 选择 `entry` 模块。
+3. 选择 `entry` 模块。
 
-4\. 连接模拟器或真机。
+4. 连接模拟器或真机。
 
-5\. 点击运行，进入“蜗牛推箱子”开始页面。
+5. 点击运行，进入“蜗牛推箱子”开始页面。
 
 
 
-\## 构建验证
+## 构建验证
 
 
 
