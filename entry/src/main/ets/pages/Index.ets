@@ -675,79 +675,47 @@ struct Index {
 
   @Builder
   private startPage() {
-    Stack({ alignContent: Alignment.Bottom }) {
+    Stack({ alignContent: Alignment.Center }) {
       Image($r('app.media.start_page'))
         .width('100%')
         .height('100%')
         .objectFit(ImageFit.Cover)
 
       Column() {
-        Blank()
-          .width('100%')
-          .height('34%')
-          .backgroundColor('#0E241A66')
+        this.startPageTitle()
 
         Blank()
-          .width('100%')
           .layoutWeight(1)
-          .backgroundColor('#00000000')
 
-        Blank()
+        Text('慢慢推，也能抵达终点')
+          .fontSize(this.isStartPageCompact() ? 24 : 30)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#FFFFFF')
+          .fontFamily('HarmonyOS Sans SC')
+          .textAlign(TextAlign.Center)
+          .shadow({ radius: 7, color: '#4A2B0B99', offsetX: 0, offsetY: 3 })
           .width('100%')
-          .height('44%')
-          .backgroundColor('#0E241ACC')
+          .margin({ bottom: this.isStartPageCompact() ? 18 : 24 })
+
+        this.startPagePrimaryButton()
+
+        Text('支持关卡选择、通关评级和本地记录')
+          .fontSize(this.isStartPageCompact() ? 13 : 15)
+          .fontWeight(FontWeight.Medium)
+          .fontColor('#FFFFFF')
+          .opacity(0.86)
+          .shadow({ radius: 5, color: '#3B260D88', offsetX: 0, offsetY: 2 })
+          .margin({ top: this.isStartPageCompact() ? 18 : 22 })
       }
       .width('100%')
       .height('100%')
-
-      Image($r('app.media.sparkles'))
-        .width(this.isCompactLayout() ? 210 : 320)
-        .height(this.isCompactLayout() ? 110 : 170)
-        .objectFit(ImageFit.Contain)
-        .opacity(0.16)
-        .margin({ bottom: this.isCompactLayout() ? 170 : 220 })
-
-      Image($r('app.media.start_page_decoration'))
-        .width(this.isCompactLayout() ? 150 : 220)
-        .height(this.isCompactLayout() ? 88 : 128)
-        .objectFit(ImageFit.Contain)
-        .opacity(0.38)
-        .margin({ bottom: this.isCompactLayout() ? 22 : 36, right: this.isCompactLayout() ? 210 : 380 })
-
-      Column({ space: 12 }) {
-        Text('慢慢推，也能抵达终点')
-          .fontSize(this.isCompactLayout() ? 22 : 26)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Colors.title)
-          .fontFamily('HarmonyOS Sans SC')
-          .shadow({ radius: 8, color: '#00000055', offsetX: 0, offsetY: 3 })
-
-        Stack() {
-          Image($r('app.media.ui_button_primary'))
-            .width('100%')
-            .height('100%')
-            .objectFit(ImageFit.Fill)
-
-          Text('开始冒险')
-            .fontSize(23)
-            .fontWeight(FontWeight.Bold)
-            .fontColor('#3A2407')
-            .shadow({ radius: 3, color: '#FFF3B866', offsetX: 0, offsetY: 1 })
-        }
-        .width(this.isCompactLayout() ? '72%' : 360)
-        .height(this.isCompactLayout() ? 64 : 70)
-        .margin({ top: 14 })
-        .shadow({ radius: Shadow.primaryRadius, color: Colors.blackPrimaryShadow, offsetX: 0, offsetY: Shadow.primaryOffsetY })
-        .onClick(() => this.startGame())
-
-        Text('支持关卡选择、通关评级和本地记录')
-          .fontSize(13)
-          .fontColor(Colors.body)
-          .opacity(0.88)
-      }
-      .width('100%')
       .alignItems(HorizontalAlign.Center)
-      .margin({ bottom: this.isCompactLayout() ? 54 : 78 })
+      .padding({
+        top: this.startPageTopPadding(),
+        right: this.isStartPageCompact() ? 18 : 32,
+        bottom: this.startPageBottomPadding(),
+        left: this.isStartPageCompact() ? 18 : 32
+      })
     }
     .width('100%')
     .height('100%')
@@ -755,6 +723,100 @@ struct Index {
     .onAreaChange((oldValue, newValue) => {
       this.updateLayoutWidth(newValue.width as number | string);
     })
+  }
+
+  @Builder
+  private startPageTitle() {
+    Column({ space: 0 }) {
+      this.startPageTitleLine('蜗牛', this.startPageTitlePrimarySize(), '#FFD34D')
+      this.startPageTitleLine('推箱子', this.startPageTitleSecondarySize(), '#FFF7EF')
+    }
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+
+  @Builder
+  private startPageTitleLine(label: string, fontSize: number, fillColor: string) {
+    Stack() {
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor('#5A2E08')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .translate({ x: 0, y: 8 })
+        .shadow({ radius: 7, color: '#2C1608AA', offsetX: 0, offsetY: 4 })
+
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor('#6B3509')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .translate({ x: -4, y: 0 })
+
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor('#6B3509')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .translate({ x: 4, y: 0 })
+
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor('#6B3509')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .translate({ x: 0, y: -4 })
+
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor('#6B3509')
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .translate({ x: 0, y: 4 })
+
+      Text(label)
+        .fontSize(fontSize)
+        .fontWeight(FontWeight.Bolder)
+        .fontFamily('HarmonyOS Sans SC')
+        .fontColor(fillColor)
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .shadow({ radius: 3, color: '#FFF0A9AA', offsetX: 0, offsetY: -1 })
+    }
+    .width('100%')
+    .height(fontSize + (this.isStartPageCompact() ? 20 : 24))
+  }
+
+  @Builder
+  private startPagePrimaryButton() {
+    Stack() {
+      Image($r('app.media.ui_button_primary'))
+        .width('100%')
+        .height('100%')
+        .objectFit(ImageFit.Fill)
+
+      Text('开始游戏')
+        .fontSize(this.isStartPageCompact() ? 24 : 28)
+        .fontWeight(FontWeight.Bold)
+        .fontColor('#3A2407')
+        .fontFamily('HarmonyOS Sans SC')
+        .textAlign(TextAlign.Center)
+        .shadow({ radius: 3, color: '#FFF3B866', offsetX: 0, offsetY: 1 })
+    }
+    .width(this.isStartPageCompact() ? '74%' : 380)
+    .height(this.isStartPageCompact() ? 64 : 74)
+    .shadow({ radius: Shadow.primaryRadius, color: Colors.blackPrimaryShadow, offsetX: 0, offsetY: Shadow.primaryOffsetY })
+    .onClick(() => this.startGame())
   }
 
   @Builder
@@ -2577,6 +2639,26 @@ struct Index {
 
   private isCompactLayout(): boolean {
     return this.layoutWidth > 0 && this.layoutWidth < 960;
+  }
+
+  private isStartPageCompact(): boolean {
+    return this.layoutWidth <= 0 || this.layoutWidth < 720;
+  }
+
+  private startPageTopPadding(): number {
+    return this.isStartPageCompact() ? 44 : 64;
+  }
+
+  private startPageBottomPadding(): number {
+    return this.isStartPageCompact() ? 48 : 76;
+  }
+
+  private startPageTitlePrimarySize(): number {
+    return this.isStartPageCompact() ? 76 : 96;
+  }
+
+  private startPageTitleSecondarySize(): number {
+    return this.isStartPageCompact() ? 66 : 84;
   }
 
   private directionPadWidth(): number {
