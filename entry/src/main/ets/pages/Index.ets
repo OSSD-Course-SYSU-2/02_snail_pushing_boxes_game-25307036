@@ -1,4 +1,5 @@
 import { common } from '@kit.AbilityKit';
+import { audio } from '@kit.AudioKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { media } from '@kit.MediaKit';
 import { SNAIL_LEVELS, SnailLevel } from '../data/SnailLevels';
@@ -33,6 +34,8 @@ const GAME_FOCUS_ID: string = 'snail-game-root';
 const START_PAGE_BGM_RAW_FILE: string = '开始页面音乐.mp3';
 const GAME_BGM_RAW_FILE: string = '背景音乐.mp3';
 const CLEAR_SOUND_RAW_FILE: string = '通关音效.mp3';
+const BGM_VOLUME: number = 1;
+const CLEAR_SOUND_VOLUME: number = 1;
 const RATING_STAR_LIT_COLOR: string = '#FFD700';
 const RATING_STAR_LIT_SHADOW_COLOR: string = '#FFD700AA';
 
@@ -96,6 +99,10 @@ struct Index {
     this.setStatus('选择任意关卡，帮蜗牛把补给箱慢慢送回荷叶码头。', 0);
     this.restoreContinuedGame();
     this.startBackgroundMusic(this.currentView === VIEW_START ? START_PAGE_BGM_RAW_FILE : GAME_BGM_RAW_FILE);
+  }
+
+  onPageShow(): void {
+    this.resumeCurrentBackgroundMusic();
   }
 
   aboutToDisappear(): void {
@@ -447,6 +454,7 @@ struct Index {
       return;
     }
     if (state === 'initialized') {
+      this.applyMusicRendererInfo(player);
       player.prepare().catch(() => {
         if (player === this.bgmPlayer) {
           this.releaseBackgroundMusic();
@@ -461,7 +469,8 @@ struct Index {
     this.bgmPreparing = false;
     try {
       player.loop = true;
-      player.setVolume(0.35);
+      player.audioInterruptMode = audio.InterruptMode.SHARE_MODE;
+      player.setVolume(BGM_VOLUME);
       player.play().catch(() => {
         if (player === this.bgmPlayer) {
           this.releaseBackgroundMusic();
@@ -505,6 +514,54 @@ struct Index {
     } catch (error) {
       return Promise.resolve();
     }
+  }
+
+  private applyMusicRendererInfo(player: media.AVPlayer): void {
+    try {
+      player.audioRendererInfo = {
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags: 0
+      };
+    } catch (error) {
+    }
+  }
+
+  private resumeCurrentBackgroundMusic(): void {
+    const player = this.bgmPlayer;
+    if (!player) {
+      this.startBackgroundMusic(this.currentView === VIEW_START ? START_PAGE_BGM_RAW_FILE : GAME_BGM_RAW_FILE);
+      return;
+    }
+
+    try {
+      if (player.state === 'playing') {
+        player.setVolume(BGM_VOLUME);
+        return;
+      }
+      if (player.state === 'prepared' || player.state === 'paused' || player.state === 'completed') {
+        player.setVolume(BGM_VOLUME);
+        player.play().catch(() => {
+          if (player === this.bgmPlayer) {
+            this.restartBackgroundMusic();
+          }
+        });
+        return;
+      }
+      if (player.state === 'error' || player.state === 'released' || player.state === 'stopped') {
+        this.restartBackgroundMusic();
+      }
+    } catch (error) {
+      this.restartBackgroundMusic();
+    }
+  }
+
+  private restartBackgroundMusic(): void {
+    const rawFileName = this.currentView === VIEW_START ? START_PAGE_BGM_RAW_FILE : GAME_BGM_RAW_FILE;
+    const requestToken = this.bgmRequestToken + 1;
+    this.bgmRequestToken = requestToken;
+    this.releaseBackgroundMusic()
+      .then(() => this.prepareBackgroundMusic(rawFileName, requestToken))
+      .catch(() => this.prepareBackgroundMusic(rawFileName, requestToken));
   }
 
   private pauseBackgroundMusicForClearSound(): Promise<void> {
@@ -627,7 +684,8 @@ struct Index {
     this.clearSoundPreparing = false;
     try {
       player.loop = false;
-      player.setVolume(0.85);
+      player.audioInterruptMode = audio.InterruptMode.SHARE_MODE;
+      player.setVolume(CLEAR_SOUND_VOLUME);
       player.play().catch(() => this.releaseClearSoundEffect());
     } catch (error) {
       this.releaseClearSoundEffect();
@@ -1073,7 +1131,7 @@ struct Index {
       .width('100%')
 
       Row({ space: 8 }) {
-        this.actionButton('撤销', Colors.warning, this.history.length > 0, () => this.undoMove())
+        this.actionButton('撤销', Colors.warning, true, () => this.undoMove())
         this.actionButton('重开', Colors.danger, true, () => this.resetLevel())
       }
       .width('100%')
