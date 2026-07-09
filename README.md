@@ -22,7 +22,7 @@
 
 
 
-![开始页面](doc/screenshots/单屏大小页面.png)
+![开始页面](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/单屏大小页面.png)
 
 
 
@@ -30,7 +30,7 @@
 
 
 
-![开始页面](doc/screenshots/双屏大小页面.png)
+![开始页面](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/双屏大小页面.png)
 
 
 
@@ -38,7 +38,7 @@
 
 
 
-![开始页面](doc/screenshots/三屏大小页面.png)
+![开始页面](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/三屏大小页面.png)
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-![关卡总览](doc/screenshots/02-home-overview.png)
+![关卡总览](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/02-home-overview.png)
 
 
 
@@ -54,7 +54,7 @@
 
 
 
-![棋盘与局内控制](doc/screenshots/03-play-board-controls.png)
+![棋盘与局内控制](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/03-play-board-controls.png)
 
 
 
@@ -62,7 +62,7 @@
 
 
 
-![路线总览](doc/screenshots/04-route-overview.png)
+![路线总览](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/04-route-overview.png)
 
 
 
@@ -70,7 +70,7 @@
 
 
 
-![通关反馈](doc/screenshots/05-clear-overlay.png)
+![通关反馈](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/05-clear-overlay.png)
 
 
 
@@ -82,7 +82,7 @@
 
 
 
-![三屏关卡总览](doc/screenshots/三屏大小.1.png)
+![三屏关卡总览](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/三屏大小.1.png)
 
 
 
@@ -90,7 +90,7 @@
 
 
 
-![三屏棋盘与局内控制](doc/screenshots/三屏大小.2.png)
+![三屏棋盘与局内控制](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/三屏大小.2.png)
 
 
 
@@ -98,7 +98,7 @@
 
 
 
-![双屏关卡总览](doc/screenshots/双屏大小.1.png)
+![双屏关卡总览](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/双屏大小.1.png)
 
 
 
@@ -106,11 +106,11 @@
 
 
 
-![双屏棋盘与局内控制](doc/screenshots/双屏大小.2.png)
+![双屏棋盘与局内控制](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/双屏大小.2.png)
 
 
 
-![双屏棋盘与局内控制](doc/screenshots/双屏大小.3.png)
+![双屏棋盘与局内控制](https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/doc/screenshots/双屏大小.3.png)
 
 
 
@@ -358,19 +358,19 @@
 
 | --- | --- | --- |
 
-| 蜗牛角色 | <img src="entry/src/main/resources/base/media/snail_player.png" width="72" /> | 玩家角色 |
+| 蜗牛角色 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/snail_player.png" width="72" /> | 玩家角色 |
 
-| 普通木箱 | <img src="entry/src/main/resources/base/media/wood_box.png" width="72" /> | 推箱目标 |
+| 普通木箱 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/wood_box.png" width="72" /> | 推箱目标 |
 
-| 死角木箱 | <img src="entry/src/main/resources/base/media/wood_box_deadlock.png" width="72" /> | 死角预警 |
+| 死角木箱 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/wood_box_deadlock.png" width="72" /> | 死角预警 |
 
-| 荷叶目标 | <img src="entry/src/main/resources/base/media/lily_goal.png" width="72" /> | 箱子终点 |
+| 荷叶目标 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/lily_goal.png" width="72" /> | 箱子终点 |
 
-| 金色星星 | <img src="entry/src/main/resources/base/media/gold_star.png" width="72" /> | 通关评级 |
+| 金色星星 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/gold_star.png" width="72" /> | 通关评级 |
 
-| 主按钮 | <img src="entry/src/main/resources/base/media/ui_button_primary.png" width="150" /> | 主要操作 |
+| 主按钮 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/ui_button_primary.png" width="150" /> | 主要操作 |
 
-| 绿色按钮 | <img src="entry/src/main/resources/base/media/ui_button_green.png" width="150" /> | 次级操作和方向键 |
+| 绿色按钮 | <img src="https://ghfast.top/https://raw.githubusercontent.com/OSSD-Course-SYSU-2/02_snail_pushing_boxes_game-25307036/main/entry/src/main/resources/base/media/ui_button_green.png" width="150" /> | 次级操作和方向键 |
 
 
 
@@ -469,6 +469,5 @@ entry/src/main/resources/
 
 
 项目可通过 DevEco Studio / hvigor 构建 `entry` 模块。命令行环境可使用 `assembleApp` 进行完整打包验证。
-
 
 
